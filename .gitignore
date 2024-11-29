@@ -1,0 +1,6 @@
+__pycache__
+./code_files_dump
+*/.DS_Store
+.DS_Store
+./logs
+./.venv

@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  fastapi_uvicorn:
+    build: .
+    ports:
+      - 8080:8080
+    container_name: compiler_app
+    networks:
+      - nginx_network
+  nginx:
+    build: ./nginx
+    container_name: nginx_app
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    expose:
+      - 80
+    ports:
+      - 80:80
+    depends_on:
+      - fastapi_uvicorn
+    networks:
+      - nginx_network
+    restart: always
+
+networks:
+  nginx_network:
+    driver: bridge
